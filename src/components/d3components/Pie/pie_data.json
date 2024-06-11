@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "type": "FIT"
+    },
+    {
+        "id": 2,
+        "type": "OTA"
+    },
+    {
+        "id": 3,
+        "type": "OTA"
+    },
+    {
+        "id": 4,
+        "type": "OTA"
+    },
+    {
+        "id": 5,
+        "type": "FIT"
+    },
+    {
+        "id": 6,
+        "type": "FIT"
+    },
+    {
+        "id": 7,
+        "type": "AGENT"
+    }
+]
