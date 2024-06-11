@@ -57,8 +57,9 @@ function App() {
       </p>
       <h1>Pie Chart</h1>
       <PieChart width={960} height={600} />
-      <h1>Donut Chart</h1>
+      <h1 className="mt-8">Donut Chart</h1>
       <PieChart width={960} height={600} type='donut' />
+      
       <CirclesGapMinder data={gapData} colorScale={color} year={selectedYear.x} onSliderChange={handleSliderChange} continents={continents} selectedContinent={selectedContinent}  setContinent={handleLegendClick}/>
       <Circles />
       <ChartBar width={900} height={600} data={sunshineData}/>

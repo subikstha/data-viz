@@ -23,7 +23,7 @@ const D3LineChart = ({ data }: D3LineChartProps) => {
     if (!data) return;
 
     // Convert dates from strings to Date objects
-    const parsedData = data.map(d => ({ ...d, date: new Date(d.date) }));
+    const parsedData = data.map(d => ({ ...d, date: new Date(d.date) })).slice(0,40);
 
      // Get the min and max of temperatures, yExtent
      const highMax = d3.max(parsedData, d => d.high);
@@ -51,7 +51,7 @@ const D3LineChart = ({ data }: D3LineChartProps) => {
      // ]
 
      // Instead of creating two line generators for the high and low lines, we can do as below
-     const line = d3.line().x(d => xScale(d.date));
+     const line = d3.line().x(d => xScale(d.date)).curve(d3.curveBasis); 
 
      const linePaths = [
         {path: line.y(d => yScale(d.high))(parsedData), fill: '#dc2626'},
@@ -59,6 +59,7 @@ const D3LineChart = ({ data }: D3LineChartProps) => {
      ]
      
      setPaths(linePaths)
+     
     
   }, [data]);
 
