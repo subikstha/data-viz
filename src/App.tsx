@@ -12,6 +12,7 @@ import gapData from './components/d3components/gapMinder/gapminder_data.json'
 import {scaleOrdinal, ScaleOrdinal} from 'd3-scale'
 import { schemeTableau10 } from 'd3-scale-chromatic'
 import PieChart from './components/d3components/Pie/PieChart'
+import BasicBarChart from './components/d3components/BasicBarChart/BasicBarChart'
 
 // Dummy data for chart
 
@@ -26,20 +27,20 @@ function App() {
 
   const handleLegendClick = function(continent: string) {
     setSelectedContinent((prevState) => prevState === continent ? "all" : continent)
-    console.log('selected continent', continent);
+    // console.log('selected continent', continent);
   }
 
   const continents = [...new Set(gapData.map(d => d.continent))]
   const color:ScaleOrdinal<string,string> = scaleOrdinal<string,string>().domain(continents).range(schemeTableau10)
 
-  console.log('continent', continents);
+  // console.log('continent', continents);
 
   // Data for chart
   const sunshineData = sunshine.map((d) => {
     return {city: d.CITY, sunshine: d['JUL']}
   }).sort((a,b) => b.sunshine - a.sunshine).slice(0,20)
 
-  console.log('sunshine data', sunshineData);
+  // console.log('sunshine data', sunshineData);
 
   return (
     <>
@@ -55,6 +56,8 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <h1>Basic Bar Chart</h1>
+      <BasicBarChart width={960} height={450} margin={{top: 25, right: 25, bottom: 25, left: 25}} />
       <h1>Pie Chart</h1>
       <PieChart width={960} height={600} />
       <h1 className="mt-8">Donut Chart</h1>

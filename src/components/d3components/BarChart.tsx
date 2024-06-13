@@ -28,7 +28,7 @@ const D3BarChart = ({ data }: D3BarChartProps) => {
     const parsedData = data.map(d => ({ ...d, date: new Date(d.date) }));
 
     // 1. Map date to x position
-    const extent = d3.extent(parsedData, (d) => new Date(d.date));
+    const extent = d3.extent(parsedData, (d) => new Date(d.date)) as [Date, Date];
     const xScale = d3.scaleTime().domain(extent).range([margin.left, width-margin.right]);
 
     // 2. Map temperature to y position
@@ -52,6 +52,8 @@ const D3BarChart = ({ data }: D3BarChartProps) => {
       height: yScale(d.low) - yScale(d.high),
       fill: colorScale(d.avg),
     }));
+
+    console.log('these are the updated bars', updatedBars);
 
     setBars(updatedBars);
     xScaleRef.current = xScale;

@@ -7,9 +7,9 @@ import {scaleLinear, select} from 'd3'
 const colors = ['#2176ae', '#57b8ff', '#b66d0d', '#fbb13c', '#fe6847']
 const Circles = ({width=960, height=500}: {width?: number; height?: number;}) => {
     const [data, setData] = useState(getData())
-    console.log('this is the circle data', data);
+    // console.log('this is the circle data', data);
     const svgRef = useRef(null)
-    console.log(svgRef.current);
+    // console.log(svgRef.current);
 
     const handleButtonClick = () => {
         setData(getData())

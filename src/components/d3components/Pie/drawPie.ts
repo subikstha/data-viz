@@ -22,7 +22,7 @@ export function drawPie({SVG, color, width, height, pieGenerator, pieLayoutData,
     
     // Computing the radius
     const radius = Math.min(width,height) / 2;
-    console.log('this is the radius', radius);
+    // console.log('this is the radius', radius);
 
     // Appending a g element in the svg
     let g = SVG.select('g');

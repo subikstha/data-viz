@@ -18,11 +18,11 @@ const PieChart = ({width = 960 , height = 600, type='pie'}: PieChartProps) => {
 
     // 1 Grouping the data based on the type field
     const groupedData = group(pieChartData, d => d.type)
-    console.log('this is the grouped data', groupedData)
+    // console.log('this is the grouped data', groupedData)
 
     // 2 Calculate the count of eacth type category
     const pieData = Array.from(groupedData, ([key, value]) => ({ type: key, count: value.length }));
-    console.log('this is the pie data', pieData);
+    // console.log('this is the pie data', pieData);
 
     // 3. Create a pie layout function
     const pieGenerator = pie<{ type: string; count: number }>()
@@ -31,7 +31,7 @@ const PieChart = ({width = 960 , height = 600, type='pie'}: PieChartProps) => {
 
     // 4. Generate the pie layout data, creating pies
     const pieLayoutData = pieGenerator(pieData);
-    console.log('Pies pie layout data', pieLayoutData);
+    // console.log('Pies pie layout data', pieLayoutData);
 
    
     useEffect(() => {

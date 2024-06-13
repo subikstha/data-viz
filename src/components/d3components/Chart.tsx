@@ -2,7 +2,7 @@ import {useEffect, useRef} from 'react'
 import { scaleLinear, scaleBand, max, select, axisLeft,format } from "d3"
 
 const ChartBar = ({width, height, data}) => {
-  console.log('this is the data inside the chart component', data)
+  // console.log('this is the data inside the chart component', data)
   const margin = 30
   const lines = [10,20,30,40]
   const yScaleRefSunshine = useRef()
@@ -32,7 +32,7 @@ const ChartBar = ({width, height, data}) => {
   yScaleRefSunshine.current = yScale;
 
   useEffect(() => {
-    select(".yAxis-sunshine").call(axisLeft(yScaleRefSunshine.current).tickFormat(format(",.0f")))
+    select(".yAxis-sunshine").call(axisLeft(yScaleRefSunshine.current).ticks(5))
   })
 
   return (
