@@ -57,18 +57,18 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      <h1>Basic Bar Chart Linear Scale</h1>
+      <h1>Basic Bar Chart Linear YScale</h1>
       <BasicBarChart width={1200} height={450} margin={{top: 25, right: 25, bottom: 25, left: 25}} />
-      <h1>Basic Bar Chart Log Scale</h1>
-      <BasicBarChartLog  width={1200} height={450} margin={{top: 25, right: 25, bottom: 25, left: 25}}/>
+      <h1>Basic Bar Chart Log YScale</h1>
+      <BasicBarChartLog  width={1200} height={450} margin={{top: 25, right: 30, bottom: 25, left: 30}}/>
       <h1>Pie Chart</h1>
       <PieChart width={960} height={600} />
       <h1 className="mt-8">Donut Chart</h1>
       <PieChart width={960} height={600} type='donut' />
       
       <CirclesGapMinder data={gapData} colorScale={color} year={selectedYear.x} onSliderChange={handleSliderChange} continents={continents} selectedContinent={selectedContinent}  setContinent={handleLegendClick}/>
-      <Circles />
-      <ChartBar width={900} height={600} data={sunshineData}/>
+      {/* <Circles /> */}
+      {/* <ChartBar width={900} height={600} data={sunshineData}/> */}
       <D3BarChart data={data} />
       <D3LineChart data={data} />
       {/* <BarChartComponent />

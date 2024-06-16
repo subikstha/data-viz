@@ -63,14 +63,14 @@ const D3BarChart = ({ data }: D3BarChartProps) => {
   useEffect(() => {
     if (!bars.length) return;
 
-    d3.select(".xAxis").call(d3.axisBottom(xScaleRef.current).tickFormat(d3.timeFormat("%b")));
-    d3.select(".yAxis").call(d3.axisLeft(yScaleRef.current).tickFormat(d => `${d}℉`));
+    d3.select(".barChart .xAxis").call(d3.axisBottom(xScaleRef.current).tickFormat(d3.timeFormat("%b")));
+    d3.select(".barChart .yAxis").call(d3.axisLeft(yScaleRef.current).tickFormat(d => `${d}℉`));
   }, [bars]);
 
   return (
     <>
     <h1>Bar chart</h1>
-    <svg width={width} height={height}>
+    <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} className='barChart'>
       {bars.map((d, i) => (
         <rect key={i} x={d.x} y={d.y} width={2} height={d.height} fill={d.fill} />
       ))}

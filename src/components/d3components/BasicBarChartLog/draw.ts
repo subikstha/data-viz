@@ -16,7 +16,7 @@ interface DrawChartParams {
     // bars: IBarStateTypes[],
     // setBars: React.Dispatch<React.SetStateAction<IBarStateTypes[]>>
 }
-export default function draw({SVG,parsedData,width, height, margin}: DrawChartParams) {
+export default function draw({SVG,parsedData,width, height, margin, xScaleRef, yScaleRef}: DrawChartParams) {
     console.log('daata', parsedData);
     const xExtent = extent(parsedData, d => d.dataKey) as [Date, Date];
     const yExtent = extent(parsedData, d => d.dataValue) as [number, number];
@@ -40,17 +40,18 @@ export default function draw({SVG,parsedData,width, height, margin}: DrawChartPa
     }));
 
     // Adding axes
-    SVG.append('g')
-    .attr('transform', `translate(${margin.left}, 0)`)
-    .call(axisLeft(yScale).ticks(3))
+    // SVG.append('g')
+    // .attr('transform', `translate(${margin.left}, 0)`)
+    // .call(axisLeft(yScale).ticks(3))
 
     // Define the time format for the x-axis ticks
-    const formatTime = timeFormat("%d %b %Y");
+    // const formatTime = timeFormat("%d %b %Y");
 
     // Adding x-axis
-    SVG.append('g')
-        .attr('transform', `translate(0, ${height - margin.bottom})`)
-        .call(axisBottom(xScale).ticks(parsedData.length-1).tickFormat(formatTime));
-        
+    // SVG.append('g')
+    //     .attr('transform', `translate(0, ${height - margin.bottom})`)
+    //     .call(axisBottom(xScale).ticks(parsedData.length-1).tickFormat(formatTime));
+    xScaleRef.current = xScale
+    yScaleRef.current = yScale
     return updatedBars
 }
