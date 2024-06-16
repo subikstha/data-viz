@@ -17,7 +17,7 @@ interface BasicBarChartProps{
   height?: number;
   margin: {top: number; right: number; bottom: number; left: number}
 }
-const BasicBarChart = ({width=960, height=650, margin}: BasicBarChartProps) => {
+const BasicBarChartLog = ({width=960, height=650, margin}: BasicBarChartProps) => {
   // State to store bars
   const [bars, setBars] = useState<IBarStateTypes[]>([]);
   // Get the SVG ref using useRef
@@ -52,4 +52,4 @@ const BasicBarChart = ({width=960, height=650, margin}: BasicBarChartProps) => {
   )
 }
 
-export default BasicBarChart
+export default BasicBarChartLog

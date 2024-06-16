@@ -1,4 +1,4 @@
-import { axisBottom, axisLeft, extent, scaleLinear, scaleTime, Selection, timeFormat } from "d3";
+import { axisBottom, axisLeft, extent, scaleLog, scaleTime, Selection, timeFormat } from "d3";
 
 // interface IBarStateTypes {
 //     x: number;
@@ -22,7 +22,7 @@ export default function draw({SVG,parsedData,width, height, margin}: DrawChartPa
     const yExtent = extent(parsedData, d => d.dataValue) as [number, number];
     // Creating the scales
     const xScale = scaleTime().domain([xExtent[0], xExtent[1]]).range([margin.left, width-margin.right])
-    const yScale = scaleLinear().domain([Math.min(10, yExtent[0]), yExtent[1]]).range([height-margin.top, margin.bottom])
+    const yScale = scaleLog().domain([Math.min(10, yExtent[0]), yExtent[1]]).range([height-margin.top, margin.bottom])
     console.log('x and y extents are', xExtent, yExtent, typeof (xExtent[1]));
 
     // const barWidth = ((width-margin.left-margin.right) / parsedData.length);

@@ -13,6 +13,7 @@ import {scaleOrdinal, ScaleOrdinal} from 'd3-scale'
 import { schemeTableau10 } from 'd3-scale-chromatic'
 import PieChart from './components/d3components/Pie/PieChart'
 import BasicBarChart from './components/d3components/BasicBarChart/BasicBarChart'
+import BasicBarChartLog from './components/d3components/BasicBarChartLog/BasicBarChartLog'
 
 // Dummy data for chart
 
@@ -56,8 +57,10 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      <h1>Basic Bar Chart</h1>
-      <BasicBarChart width={960} height={450} margin={{top: 25, right: 25, bottom: 25, left: 25}} />
+      <h1>Basic Bar Chart Linear Scale</h1>
+      <BasicBarChart width={1200} height={450} margin={{top: 25, right: 25, bottom: 25, left: 25}} />
+      <h1>Basic Bar Chart Log Scale</h1>
+      <BasicBarChartLog  width={1200} height={450} margin={{top: 25, right: 25, bottom: 25, left: 25}}/>
       <h1>Pie Chart</h1>
       <PieChart width={960} height={600} />
       <h1 className="mt-8">Donut Chart</h1>

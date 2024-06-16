@@ -18,6 +18,7 @@ type D3LineChartProps = {
 
 const D3LineChart = ({ data }: D3LineChartProps) => {
   const [paths, setPaths] = useState<{ path: string | null; fill: string }[]>([]);
+  const [tooltip, setTooltip] = useState<{ visible: boolean; x: number; y: number; content: string }>({ visible: false, x: 0, y: 0, content: '' });
   const svgRef = useRef<SVGSVGElement | null>(null);
 
   useEffect(() => {
@@ -53,7 +54,7 @@ const D3LineChart = ({ data }: D3LineChartProps) => {
      // ]
 
      // Instead of creating two line generators for the high and low lines, we can do as below
-     const line = d3.line().x(d => xScale(d.date)).curve(d3.curveBasis); 
+     const line = d3.line().x(d => xScale(d.date)).curve(d3.curveCardinal); 
 
      const linePaths = [
         {path: line.y(d => yScale(d.high))(parsedData), fill: '#dc2626'},
@@ -68,7 +69,42 @@ const D3LineChart = ({ data }: D3LineChartProps) => {
        d3.select(svgRef.current).append('g')
         .call(d3.axisBottom(xScale).tickFormat(d3.timeFormat("%b")))
         .attr('transform', `translate(0, ${height-margin.bottom})`)
+
+      // Adding data points to the line chart
+      d3.select(svgRef.current).selectAll('.data-point-high')
+      .data(parsedData)
+      .enter()
+      .append('circle')
+      .attr('class', 'data-point-high')
+      .attr('cx', d => xScale(d.date))
+      .attr('cy', d => yScale(d.high))
+      .attr('r', 5)
+      .attr('fill', '#dc2626')
+      .on('mouseover', (event, d) => {
+        setTooltip({
+          visible: true,
+          x: event.pageX,
+          y: event.pageY,
+          content: yScale(d.high)
+        })
+      })
+      .on("mouseout", () => {
+        setTimeout(() => {
+          setTooltip({ ...tooltip, visible: false });
+        }, 500)
+      });
+ 
+      d3.select(svgRef.current).selectAll('.data-point-low')
+      .data(parsedData)
+      .enter()
+      .append('circle')
+      .attr('class', 'data-point-low')
+      .attr('cx', d => xScale(d.date))
+      .attr('cy', d => yScale(d.low))
+      .attr('r', 5)
+      .attr('fill', '#38bdf8');
      }
+
      
      setPaths(linePaths)
      
@@ -78,11 +114,26 @@ const D3LineChart = ({ data }: D3LineChartProps) => {
   return (
     <>
     <h1>Line chart</h1>
-    <svg ref={svgRef} width={width} height={height}>
+    <svg ref={svgRef} width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
         {paths.map(p => {
             return <path key={p.fill} fill="none" stroke={p.fill} strokeWidth="2" d={p.path}></path>
         })}
     </svg>
+    {tooltip.visible && (
+        <div style={{
+          position: 'absolute',
+          top: tooltip.y + 10,
+          left: tooltip.x + 10,
+          background: 'papayawhip',
+          padding: '5px',
+          border: '1px solid #ccc',
+          borderRadius: '5px',
+          pointerEvents: 'none',
+          color: '#000'
+        }}
+          dangerouslySetInnerHTML={{ __html: tooltip.content }}
+        />
+      )}
     </>
   );
 };
